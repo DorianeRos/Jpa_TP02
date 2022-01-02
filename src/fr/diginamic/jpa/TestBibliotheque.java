@@ -1,14 +1,17 @@
 package fr.diginamic.jpa;
 
-import java.util.List;
+
+
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+
 
 import fr.diginamic.cge.jpa.model.EClient;
 import fr.diginamic.cge.jpa.model.EEmprunt;
+import fr.diginamic.cge.jpa.model.ELivre;
 
 public class TestBibliotheque {
 
@@ -22,31 +25,31 @@ public class TestBibliotheque {
 			EntityManager em = efm.createEntityManager();
 
 			/**
-			 * Réalisez une requête qui permet d’extraire un emprunt et tous ses livres
+			 * Réalisez une requête qui permet d’extraire les livres d'un emprunt
 			 * associés.
 			 */
 			
-
-
-
+			em.getTransaction().begin();
+			EEmprunt emprunt = em.find(EEmprunt.class, 1);
+			Set<ELivre> empL = emprunt.getEmpruntLivre();
+			em.getTransaction().commit(); 
+			// Affiche tous les emprunts liés à mon client efo (1)
+			empL.stream().forEach(emp->System.out.println("ID emprunt : " + emprunt.getId() +" "+ "-> Nom du livre : " + emp.getTitre()));
 			
 			
 			 /** Réalisez une requête qui permet d’extraire tous les emprunts d’un client
 			 * donné
 			 */
-
 			em.getTransaction().begin();
+			EClient client = em.find(EClient.class, 1);
+			Set<EEmprunt> empC = client.getEmprunt();
+			em.getTransaction().commit(); 
+			// Affiche tous les emprunts liés à mon client efo (1)
+			empC.stream().forEach(emp->System.out.println("Client: " + client.getNom() +" "+ client.getPrenom() + " -> ID de l'emprunt: " + emp.getId()));
 
-			EEmprunt eao = new EEmprunt();
-			EClient efo = em.find(EClient.class, 1);
-			eao.setIdClient(efo); 
-			em.getTransaction().commit();
-
-			/**
-			 * Affiche tous les emprunts liés à mon client efo (1)
+			/** 
+			 * fermeture de la BDD
 			 */
-			efo.getEmprunt().stream().forEach(a -> System.out.println("Emprunt : " + a.getId()));
-
 			em.close();
 
 		} catch (Exception e) {

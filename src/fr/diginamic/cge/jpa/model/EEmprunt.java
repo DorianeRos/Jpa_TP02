@@ -1,7 +1,9 @@
 package fr.diginamic.cge.jpa.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -39,12 +41,13 @@ public class EEmprunt {
 
 	public EEmprunt() {
 		// TODO Auto-generated constructor stub
-		empruntLivre = new HashSet<ELivre>();
+		
 	}
 		public int getId() {
 			return id;
 		}
 
+		
 		public void setId(int id) {
 			this.id = id;
 		}
@@ -81,11 +84,23 @@ public class EEmprunt {
 			this.idClient = idClient;
 		}
 
+
+
+		
+		
 		public Set<ELivre> getEmpruntLivre() {
 			return empruntLivre;
 		}
-
 		public void setEmpruntLivre(Set<ELivre> empruntLivre) {
 			this.empruntLivre = empruntLivre;
+		}
+		@Override
+		public String toString() {
+			return "EEmprunt [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", delai=" + delai
+					+ ", idClient=" + idClient + ", empruntLivre=" + empruntLivre + "]";
+		}
+		public EEmprunt find(Class<ELivre> class1, int i) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

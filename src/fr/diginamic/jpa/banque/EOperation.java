@@ -1,7 +1,6 @@
 package fr.diginamic.jpa.banque;
 
-import java.time.LocalDate;
-
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -14,13 +13,13 @@ public class EOperation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "DATE", length = 50, nullable = false)
-	private LocalDate nom;
+	@Column(name = "DATE",  columnDefinition = "DATE DEFAULT CURRENT_DATE")
+	private Date date;
 	
-	@Column(name = "MONTANT", length = 50, nullable = false)
-	private double prenom;
+	@Column(name = "MONTANT", length = 50)
+	private double montant;
 	
-	@Column(name = "MOTIF", length = 255, nullable = false)
+	@Column(name = "MOTIF", length = 255)
 	private String motif;
 	
 	@ManyToOne
@@ -28,11 +27,11 @@ public class EOperation {
 	private ECompte compte;
 	
 	
-	public EOperation(int id, LocalDate nom, double prenom, String motif, ECompte compte) {
+	public EOperation(int id, Date date, double montant, String motif, ECompte compte) {
 		super();
 		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
+		this.date = date;
+		this.montant = montant;
 		this.motif = motif;
 		this.compte = compte;
 	}
@@ -47,24 +46,23 @@ public class EOperation {
 		this.id = id;
 	}
 
-
-	public LocalDate getNom() {
-		return nom;
+	public Date getDate() {
+		return date;
 	}
 
 
-	public void setNom(LocalDate nom) {
-		this.nom = nom;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 
-	public double getPrenom() {
-		return prenom;
+	public double getMontant() {
+		return montant;
 	}
 
 
-	public void setPrenom(double prenom) {
-		this.prenom = prenom;
+	public void setMontant(double montant) {
+		this.montant = montant;
 	}
 
 

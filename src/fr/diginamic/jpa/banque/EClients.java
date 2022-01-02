@@ -20,8 +20,8 @@ public class EClients {
 	@Column(name="PRENOM", length=50)
 	private String prenom;
 	
-	
-	@Column(name="DATE_NAISS", length = 20)
+	@Temporal(TemporalType.DATE)
+	@Column(name="DATE_NAISS")
 	private Date date_naiss;
 	
 	@ManyToOne

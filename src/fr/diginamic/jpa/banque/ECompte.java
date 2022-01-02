@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+
 @Table(name= "COMPTE")
 public class ECompte {
 	@Id

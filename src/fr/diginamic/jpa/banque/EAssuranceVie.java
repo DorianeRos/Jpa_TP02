@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name="ASSURANCE")
 public class EAssuranceVie extends ECompte{
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name= "DATE_FIN")
 	private Date datefin;
 	
@@ -45,11 +46,6 @@ public class EAssuranceVie extends ECompte{
 
 	public EAssuranceVie() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public void setId(ECompte compte) {
-		// TODO Auto-generated method stub
-		
 	}
 
 
